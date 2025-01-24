@@ -1,0 +1,12 @@
+================ COMANDOS NECESSARIOS PARA ACRIAÇÃO DO APP COM O EXPO DEV ======================
+
+1 - npm install --global expo-cli
+Instala o Expo CLI de forma global, permitindo criar e gerenciar aplicativos Expo de qualquer lugar no terminal.
+
+2 - npx create-expo-app nomedoapp
+Cria um novo projeto Expo com a estrutura básica e os arquivos iniciais, nomeando o projeto como "nomedoapp".
+
+3 - npx expo start
+Inicia o servidor de desenvolvimento do Expo, permitindo visualizar e testar o aplicativo em tempo real.
+
+4 - BAIXE O APP NA PLAYSTROY: Expo GO
