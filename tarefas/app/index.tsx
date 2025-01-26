@@ -1,38 +1,57 @@
-import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
-import React, {useState}from 'react';
-import {FontAwesome} from '@expo/vector-icons';
+import { StyleSheet, View, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
+import Tarefa from './Tarefa';
+export default function App() {
 
-export default function App(){
-   
-    const [tarefa, setTarefa] = useState('');
-    
-    function handleAdd(){
-       alert(tarefa);
-    }
-  return(
+  const [tarefa, setTarefa] = useState('');
+
+  const [list, setList] = useState([
+    {
+      key: '1',
+      item: "Notebook"
+    },
+    {
+      key: '2',
+      item: "Smatphone"
+    },
+    {
+      key: '3',
+      item: "HedSet"
+    },
+  ])
+
+  function handleAdd() {
+    alert(tarefa);
+  }
+  return (
     <View style={styles.container}>
-        
-        <Text style={styles.title}>Tarefas</Text>
-        <View style={styles.containerInput}>
 
-          <TextInput placeholder='Digite sua tarefa..' style={styles.input} value={tarefa} onChangeText={(text)=> setTarefa(text)} />
-        
-          <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
-             <FontAwesome name="plus" size={20} color="white"/>
-          </TouchableOpacity>
+      <Text style={styles.title}>Tarefas</Text>
+      <View style={styles.containerInput}>
 
-        </View>
+
+        <TextInput placeholder='Digite sua tarefa..' style={styles.input} value={tarefa} onChangeText={(text) => setTarefa(text)} />
+
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
+          <FontAwesome name="plus" size={20} color="white" />
+        </TouchableOpacity>
+      </View>
+          <FlatList style={styles.list}
+            data={list} keyExtractor={(item) => item.key}
+            renderItem={({ item }) => <Tarefa data={item} />}
+          />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container:{
-     flex:1,
-     backgroundColor: '#22272e',
-     paddingTop: 28,
+  container: {
+    flex: 1,
+    backgroundColor: '#22272e',
+    paddingTop: 28,
   },
-  title:{
+  title: {
     fontWeight: 'bold',
     color: '#fff',
     fontSize: 24,
@@ -41,16 +60,16 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  input:{
-   width: '75%',
-   backgroundColor:"#fbfbfb",
-   height: 44,
-   borderRadius: 4,
-   paddingHorizontal: 14,
+  input: {
+    width: '75%',
+    backgroundColor: "#fbfbfb",
+    height: 44,
+    borderRadius: 4,
+    paddingHorizontal: 14,
 
   },
 
-  containerInput:{
+  containerInput: {
     flexDirection: 'row',
     width: "100%",
     height: 44,
@@ -59,15 +78,21 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   }
   ,
-  buttonAdd:{
-     width: '15%',
-     height: 44,
-     backgroundColor: '#73f7ff',
-     justifyContent: 'center',
-     alignItems: 'center',
-     marginLeft: 5,
-     borderRadius: 5
+  buttonAdd: {
+    width: '15%',
+    height: 44,
+    backgroundColor: '#73f7ff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 5,
+    borderRadius: 5
+  },
 
+  list: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingStart: '4%',
+    paddingEnd: '4%'
 
   }
 })
