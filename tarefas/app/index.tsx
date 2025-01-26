@@ -1,22 +1,27 @@
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, TextInput} from 'react-native';
 import React, {useState}from 'react';
+import {FontAwesome} from '@expo/vector-icons';
 
 export default function App(){
-  const [nome, setNome] = useState("Lu");
-
-  function handleNome(){
-    // alert('test')
-    setNome("acrisio");
-  }
+   
+    const [tarefa, setTarefa] = useState('');
+    
+    function handleAdd(){
+       alert(tarefa);
+    }
   return(
     <View style={styles.container}>
-        <Text style={styles.title}>Code + Coffe</Text>
-        <Text style={[styles.title, styles.text]}>Developer Full Stack</Text>
-        <Text style={styles.nome}>{nome}</Text>
+        
+        <Text style={styles.title}>Tarefas</Text>
+        <View style={styles.containerInput}>
 
-        <TouchableOpacity style={styles.button} onPress={handleNome}>
-          <Text style={styles.buttonText}>Click</Text>
-        </TouchableOpacity>
+          <TextInput placeholder='Digite sua tarefa..' style={styles.input} value={tarefa} onChangeText={(text)=> setTarefa(text)} />
+        
+          <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
+             <FontAwesome name="plus" size={20} color="white"/>
+          </TouchableOpacity>
+
+        </View>
     </View>
   )
 }
@@ -24,36 +29,45 @@ export default function App(){
 const styles = StyleSheet.create({
   container:{
      flex:1,
-     backgroundColor: '#f1f1f1',
+     backgroundColor: '#22272e',
      paddingTop: 28,
   },
   title:{
-    fontSize:32,
-    color: "#121212",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 24,
+    marginTop: '5%',
+    paddingStart: '5%',
+    marginBottom: 12,
+  },
+
+  input:{
+   width: '75%',
+   backgroundColor:"#fbfbfb",
+   height: 44,
+   borderRadius: 4,
+   paddingHorizontal: 14,
+
+  },
+
+  containerInput:{
+    flexDirection: 'row',
+    width: "100%",
+    height: 44,
+    alignItems: "center",
+    justifyContent: 'center',
+    marginBottom: 22,
   }
   ,
-  text:{
-    color: 'red'
-  },
+  buttonAdd:{
+     width: '15%',
+     height: 44,
+     backgroundColor: '#73f7ff',
+     justifyContent: 'center',
+     alignItems: 'center',
+     marginLeft: 5,
+     borderRadius: 5
 
-  nome:{
-    textAlign:'center',
-    fontSize:28,
-    fontStyle:'italic'
-  },
 
-  button:{
-    backgroundColor:'blue',
-    height: 40,
-    justifyContent: 'center',
-    alignItems:"center",
-    marginTop: 35
-  },
-
-  buttonText:{
-     color: '#FFF',
-     fontWeight: 'bold'
   }
-
 })
